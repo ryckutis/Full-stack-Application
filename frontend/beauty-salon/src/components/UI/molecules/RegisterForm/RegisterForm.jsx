@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import {
   FormGroup,
   StyledForm,
@@ -60,7 +61,7 @@ export default function RegisterForm() {
           />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">Email: *</label>
           <input
             type="email"
             id="email"
@@ -70,13 +71,13 @@ export default function RegisterForm() {
           />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="registrationDate">Registration Date:</label>
+          <label htmlFor="registrationDate">Registration Date: *</label>
           <input
             type="datetime-local"
             id="registrationDate"
             value={
               registrationDate
-                ? new Date(registrationDate).toISOString().slice(0, -8)
+                ? moment(registrationDate).format('YYYY-MM-DDTHH:mm')
                 : ''
             }
             onChange={(event) => setRegistrationDate(event.target.value)}

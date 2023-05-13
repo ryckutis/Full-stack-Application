@@ -21,7 +21,7 @@ export const StyledModalContent = styled.div`
   position: relative;
   margin: 50px;
   max-width: 500px;
-  max-height: 460px;
+  max-height: 470px;
   width: 100%;
 
   h2 {
@@ -68,4 +68,11 @@ export const StyledModalContent = styled.div`
       }
     }
   }
+`;
+
+export const StyledError = styled.p`
+  margin: 0;
+  padding: 0;
+  color: red;
+  font-size: 14px;
 `;

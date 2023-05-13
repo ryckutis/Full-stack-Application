@@ -8,6 +8,7 @@ export const StyledWrapper = styled.div`
   margin: 2em auto;
   padding-bottom: 1em;
   border-radius: 10px;
+  transition: background-color 0.3s, box-shadow 0.3s;
 
   h2 {
     font-size: 1.5rem;

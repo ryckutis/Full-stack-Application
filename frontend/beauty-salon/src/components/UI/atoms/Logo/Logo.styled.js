@@ -15,13 +15,14 @@ export const StyledDiv = styled.div`
 `;
 
 export const StyledImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
+  margin-top: 15px;
   object-fit: cover;
   border-radius: 50%;
 `;
 
 export const StyledH1 = styled.h1`
-  margin-top: 10px;
+  margin-top: 0px;
   text-align: center;
 `;

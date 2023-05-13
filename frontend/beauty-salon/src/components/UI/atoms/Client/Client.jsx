@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 import { FaRegEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 import {
@@ -31,7 +32,6 @@ export default function Client() {
   }, []);
 
   function handleEditClick(user) {
-    console.log(user);
     setSelectedUser(user);
     setShowModal(true);
   }
@@ -63,12 +63,12 @@ export default function Client() {
             <StyledValue>{user.email}</StyledValue>
             <StyledLabel>Registration Date:</StyledLabel>
             <StyledValue>
-              {new Date(user.registrationDate).toLocaleString('lt-LT')}
+              {moment(user.registrationDate).format('YYYY-MM-DD HH:mm')}
             </StyledValue>
             <button onClick={() => handleEditClick(user)}>
               Edit <FaRegEdit />
             </button>
-            <button delete onClick={() => handleDeleteClick(user._id)}>
+            <button data-delete onClick={() => handleDeleteClick(user._id)}>
               Delete <AiFillDelete />
             </button>
           </StyledDiv>
