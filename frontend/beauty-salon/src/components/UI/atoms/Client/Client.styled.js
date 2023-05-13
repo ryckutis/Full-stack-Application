@@ -17,7 +17,12 @@ export const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: background-color 0.3s, box-shadow 0.3s;
 
+  :hover {
+    background-color: #eee;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
   button {
     display: flex;
     align-items: center;
