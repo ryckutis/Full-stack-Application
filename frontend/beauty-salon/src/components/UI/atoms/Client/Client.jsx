@@ -68,7 +68,7 @@ export default function Client() {
             <button onClick={() => handleEditClick(user)}>
               Edit <FaRegEdit />
             </button>
-            <button data-delete onClick={() => handleDeleteClick(user._id)}>
+            <button onClick={() => handleDeleteClick(user._id)}>
               Delete <AiFillDelete />
             </button>
           </StyledDiv>
