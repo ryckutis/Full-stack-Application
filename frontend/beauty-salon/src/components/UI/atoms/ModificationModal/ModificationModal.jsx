@@ -46,7 +46,7 @@ export default function ModificationModal({ user, onClose, show }) {
     <>
       {show && (
         <StyledModalBackground>
-          <StyledModalContent>
+          <StyledModalContent onSubmit={handleSave}>
             <h2>Modify User Information</h2>
             <label>
               First Name:
@@ -89,7 +89,7 @@ export default function ModificationModal({ user, onClose, show }) {
               />
             </label>
             {error && <StyledError>{error}</StyledError>}
-            <button onClick={handleSave}>Save</button>
+            <button type="submit">Save</button>
             <button onClick={onClose}>Cancel</button>
           </StyledModalContent>
         </StyledModalBackground>

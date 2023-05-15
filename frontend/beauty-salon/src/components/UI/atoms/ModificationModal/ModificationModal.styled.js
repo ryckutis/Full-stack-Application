@@ -11,7 +11,7 @@ export const StyledModalBackground = styled.div`
   top: 0;
 `;
 
-export const StyledModalContent = styled.div`
+export const StyledModalContent = styled.form`
   display: flex;
   flex-direction: column;
   background-color: white;
