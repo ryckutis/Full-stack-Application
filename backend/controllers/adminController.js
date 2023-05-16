@@ -27,6 +27,7 @@ export async function adminRegister(req, res) {
 export async function adminLogin(req, res) {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
     const admin = await Admin.findOne({ email });
     if (!admin) {
       return res.status(404).json({ message: 'User not found' });
