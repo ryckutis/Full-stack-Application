@@ -11,7 +11,7 @@ export const StyledModalBackground = styled.div`
   top: 0;
 `;
 
-export const StyledModalContent = styled.div`
+export const StyledModalContent = styled.form`
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -21,7 +21,7 @@ export const StyledModalContent = styled.div`
   position: relative;
   margin: 50px;
   max-width: 500px;
-  max-height: 470px;
+  max-height: 500px;
   width: 100%;
 
   h2 {
@@ -49,6 +49,7 @@ export const StyledModalContent = styled.div`
     margin-top: 1rem;
 
     :first-of-type {
+      margin-top: 0;
       background-color: darkgreen;
       color: white;
 
