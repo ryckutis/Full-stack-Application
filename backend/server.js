@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4000;
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
-  .connect(MONGO_URI)
+  .connect(MONGO_URI, { dbName: 'main' })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.log(err));
 
