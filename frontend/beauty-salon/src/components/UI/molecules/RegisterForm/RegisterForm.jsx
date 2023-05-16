@@ -8,7 +8,7 @@ import {
   SubmitButton,
 } from './RegisterForm.styled';
 
-const DB_ENDPOINT = 'http://localhost:4000';
+const DB_ENDPOINT = process.env.DB_ENDPOINT;
 
 export default function RegisterForm() {
   const [firstName, setFirstName] = useState('');

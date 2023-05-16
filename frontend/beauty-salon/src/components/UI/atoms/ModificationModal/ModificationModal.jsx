@@ -7,7 +7,7 @@ import {
   StyledError,
 } from './ModificationModal.styled';
 
-const DB_ENDPOINT = 'http://localhost:4000';
+const DB_ENDPOINT = process.env.DB_ENDPOINT;
 
 export default function ModificationModal({ user, onClose, show }) {
   const [firstName, setFirstName] = useState(user.firstName);
