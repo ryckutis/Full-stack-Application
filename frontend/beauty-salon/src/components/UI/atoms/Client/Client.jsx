@@ -12,7 +12,8 @@ import {
 } from './Client.styled';
 import ModificationModal from '../ModificationModal/ModificationModal';
 
-const DB_ENDPOINT = process.env.DB_ENDPOINT;
+const DB_ENDPOINT =
+  'https://full-stack-application-production-150a.up.railway.app';
 
 export default function Client() {
   const [users, setUsers] = useState([]);
