@@ -7,7 +7,8 @@ import {
   StyledError,
 } from './ModificationModal.styled';
 
-const DB_ENDPOINT = process.env.DB_ENDPOINT;
+const DB_ENDPOINT =
+  'https://full-stack-application-production-150a.up.railway.app';
 
 export default function ModificationModal({ user, onClose, show }) {
   const [firstName, setFirstName] = useState(user.firstName);
