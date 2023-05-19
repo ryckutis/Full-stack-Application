@@ -21,8 +21,8 @@ export async function register(req, res) {
     }
 
     const newUser = new User({
-      firstName,
-      lastName,
+      firstName: firstName || undefined,
+      lastName: lastName || undefined,
       email,
       registrationDate,
     });
