@@ -8,7 +8,6 @@ dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 const { MONGO_URI } = process.env;
-console.log(MONGO_URI);
 
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
