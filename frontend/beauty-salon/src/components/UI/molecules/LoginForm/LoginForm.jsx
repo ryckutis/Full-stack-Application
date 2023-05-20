@@ -1,43 +1,39 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import {
   ErrorMessage,
   FormGroup,
+  ShowButton,
   StyledForm,
+  StyledShowButtonDiv,
   StyledWrapper,
   SubmitButton,
 } from './LoginForm.styled';
-
-const DB_ENDPOINT =
-  'https://full-stack-application-production-150a.up.railway.app';
+import { loginAdmin } from '../../../../api calls/admin';
 
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const resp = await axios.post(DB_ENDPOINT + '/admin/sign-in', {
-        email,
-        password,
-      });
-      console.log(resp.data);
-      alert('Successfully logged in');
+      await loginAdmin(email, password);
       localStorage.setItem('isAuthenticated', 'true');
       window.location.assign('/clients');
     } catch (error) {
       console.log(error);
       setPassword('');
-      setEmail('');
-      if (error.response && error.response.status === 404) {
-        setErrorMessage('Entered email does not exist');
-      } else {
-        setErrorMessage('Entered password is invalid');
-      }
+      setErrorMessage('Entered password is invalid');
     }
   }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <StyledWrapper>
@@ -55,21 +51,28 @@ export default function LoginForm() {
         </FormGroup>
         <FormGroup>
           <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-              setErrorMessage('');
-            }}
-            required
-          />
-          {errorMessage && (
-            <ErrorMessage style={{ color: 'red' }}>{errorMessage}</ErrorMessage>
-          )}
+          <StyledShowButtonDiv>
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+                setErrorMessage('');
+              }}
+              required
+            />
+            <ShowButton type="button" onClick={togglePasswordVisibility}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </ShowButton>
+          </StyledShowButtonDiv>
+
+          {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </FormGroup>
         <SubmitButton type="submit">Sign In</SubmitButton>
+        <Link to="/admin-register">
+          Don't have an account? Click here to register
+        </Link>
       </StyledForm>
     </StyledWrapper>
   );

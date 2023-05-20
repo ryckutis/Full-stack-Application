@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import { FaRegEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
@@ -11,9 +10,7 @@ import {
   StyledCard,
 } from './Client.styled';
 import ModificationModal from '../ModificationModal/ModificationModal';
-
-const DB_ENDPOINT =
-  'https://full-stack-application-production-150a.up.railway.app';
+import { fetchUsers, deleteUser } from '../../../../api calls/user';
 
 export default function Client() {
   const [users, setUsers] = useState([]);
@@ -21,15 +18,11 @@ export default function Client() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const resp = await axios.get(DB_ENDPOINT + '/users');
-        setUsers(resp.data);
-      } catch (error) {
-        console.log(error);
-      }
+    async function getUsers() {
+      const data = await fetchUsers();
+      setUsers(data);
     }
-    fetchUsers();
+    getUsers();
   }, []);
 
   function handleEditClick(user) {
@@ -44,7 +37,7 @@ export default function Client() {
   async function handleDeleteClick(userId) {
     try {
       if (window.confirm('Are you sure you want to delete this user?')) {
-        await axios.delete(DB_ENDPOINT + `/user-delete/${userId}`);
+        await deleteUser(userId);
         setUsers(users.filter((user) => user._id !== userId));
       }
     } catch (error) {
