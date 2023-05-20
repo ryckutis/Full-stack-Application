@@ -4,17 +4,19 @@ export const StyledWrapper = styled.div`
   max-width: 600px;
   text-align: center;
   background-color: var(--background-color);
-  box-shadow: var(--box-shadow);
-  margin: 2em auto;
-  padding-bottom: 1em;
   border-radius: 10px;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: var(--box-shadow);
+  margin: 0 auto;
 
   h2 {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 3rem;
     padding-top: 2rem;
+  }
+
+  a {
+    margin-bottom: 1em;
   }
 `;
 
@@ -52,11 +54,6 @@ export const FormGroup = styled.div`
   }
 `;
 
-export const ErrorMessage = styled.div`
-  color: red;
-  font-size: 20px;
-`;
-
 export const StyledShowButtonDiv = styled.div`
   position: relative;
 `;
@@ -91,4 +88,9 @@ export const SubmitButton = styled.button`
   &:hover {
     background-color: #005fa3;
   }
+`;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 20px;
 `;

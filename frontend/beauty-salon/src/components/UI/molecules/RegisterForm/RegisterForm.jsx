@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import {
   FormGroup,
@@ -7,9 +6,7 @@ import {
   StyledWrapper,
   SubmitButton,
 } from './RegisterForm.styled';
-
-const DB_ENDPOINT =
-  'https://full-stack-application-production-150a.up.railway.app';
+import { createUser } from '../../../../api calls/user';
 
 export default function RegisterForm() {
   const [firstName, setFirstName] = useState('');
@@ -20,13 +17,13 @@ export default function RegisterForm() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const resp = await axios.post(DB_ENDPOINT + '/register', {
+      const userData = {
         firstName,
         lastName,
         email,
         registrationDate,
-      });
-      console.log(resp.data);
+      };
+      await createUser(userData);
       alert('User created successfully!');
     } catch (error) {
       console.log(error);

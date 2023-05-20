@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import moment from 'moment';
 import {
   StyledModalBackground,
   StyledModalContent,
   StyledError,
 } from './ModificationModal.styled';
-
-const DB_ENDPOINT =
-  'https://full-stack-application-production-150a.up.railway.app';
+import { updateUser } from '../../../../api calls/user';
 
 export default function ModificationModal({ user, onClose, show }) {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -25,13 +22,14 @@ export default function ModificationModal({ user, onClose, show }) {
       return;
     }
     try {
-      const resp = await axios.put(DB_ENDPOINT + `/user-update/${user._id}`, {
+      const userData = {
         firstName,
         lastName,
         email,
         registrationDate: moment(registrationDate).toDate(),
-      });
-      console.log(resp.data);
+      };
+      await updateUser(user._id, userData);
+      console.log('User updated successfully!');
       window.location.reload();
       onClose();
     } catch (error) {

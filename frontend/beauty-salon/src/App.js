@@ -4,6 +4,7 @@ import Logo from './components/UI/atoms/Logo/Logo';
 import LoginPage from './components/UI/organisms/LoginPage/LoginPage';
 import ClientsPage from './components/UI/organisms/ClientsPage/ClientsPage';
 import RegisterPage from './components/UI/organisms/RegisterPage/RegisterPage';
+import AdminRegisterPage from './components/UI/organisms/AdminRegisterPage/AdminRegisterPage';
 
 function App() {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
@@ -15,6 +16,12 @@ function App() {
         <Route
           path="/"
           element={isAuthenticated ? <Navigate to="/clients" /> : <LoginPage />}
+        />
+        <Route
+          path="/admin-register"
+          element={
+            isAuthenticated ? <Navigate to="/" /> : <AdminRegisterPage />
+          }
         />
         <Route
           path="/clients"
