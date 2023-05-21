@@ -31,6 +31,7 @@ function App() {
           path="/register"
           element={isAuthenticated ? <RegisterPage /> : <Navigate to="/" />}
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
