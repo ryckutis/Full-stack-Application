@@ -9,6 +9,7 @@ import {
   StyledShowButtonDiv,
   StyledWrapper,
   SubmitButton,
+  StyledLoader,
 } from './LoginForm.styled';
 import { loginAdmin } from '../../../../api calls/admin';
 
@@ -17,9 +18,11 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
     try {
       await loginAdmin(email, password);
       localStorage.setItem('isAuthenticated', 'true');
@@ -28,6 +31,8 @@ export default function LoginForm() {
       console.log(error);
       setPassword('');
       setErrorMessage('Entered password is invalid');
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -69,10 +74,15 @@ export default function LoginForm() {
 
           {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
         </FormGroup>
-        <SubmitButton type="submit">Sign In</SubmitButton>
-        <Link to="/admin-register">
-          Don't have an account? Click here to register
-        </Link>
+        {isLoading ? (
+          <StyledLoader />
+        ) : (
+          <SubmitButton type="submit">Sign In</SubmitButton>
+        )}
+        <p>
+          Don't have an account?{' '}
+          <Link to="/admin-register">Click here to register</Link>
+        </p>
       </StyledForm>
     </StyledWrapper>
   );

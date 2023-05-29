@@ -9,6 +9,7 @@ import {
   SubmitButton,
   ShowButton,
   StyledShowButtonDiv,
+  StyledLoader,
 } from './AdminRegister.styled';
 import { registerAdmin } from '../../../../api calls/admin';
 
@@ -19,6 +20,7 @@ export default function AdminRegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleInputChange(event) {
     if (errorMessage) {
@@ -39,9 +41,11 @@ export default function AdminRegisterForm() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setIsLoading(true);
 
     if (password !== confirmPassword) {
       setErrorMessage('Passwords do not match');
+      setIsLoading(false);
       return;
     }
 
@@ -58,6 +62,8 @@ export default function AdminRegisterForm() {
       setPassword('');
       setConfirmPassword('');
       setErrorMessage('Error registering admin');
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -101,8 +107,14 @@ export default function AdminRegisterForm() {
           />
         </FormGroup>
         {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
-        <SubmitButton type="submit">Register</SubmitButton>
-        <Link to="/">Already have an account? Click here to sign-in</Link>
+        {isLoading ? (
+          <StyledLoader />
+        ) : (
+          <SubmitButton type="submit">Register</SubmitButton>
+        )}
+        <p>
+          Already have an account? <Link to="/">Click here to sign-in</Link>
+        </p>
       </StyledForm>
     </StyledWrapper>
   );

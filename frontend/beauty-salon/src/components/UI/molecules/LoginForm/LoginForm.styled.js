@@ -22,6 +22,23 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  p {
+    font-size: 18px;
+    margin: 0;
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+      font-weight: bold;
+
+      :hover {
+        text-decoration: underline;
+        color: #005fa3;
+        transition: color 0.3s ease;
+      }
+    }
+  }
 `;
 
 export const FormGroup = styled.div`
@@ -46,15 +63,10 @@ export const FormGroup = styled.div`
     transition: border-bottom-color 0.3s ease;
     width: 100%;
 
-    &:focus {
+    :focus {
       border-bottom-color: #333;
     }
   }
-`;
-
-export const ErrorMessage = styled.div`
-  color: red;
-  font-size: 20px;
 `;
 
 export const StyledShowButtonDiv = styled.div`
@@ -77,6 +89,22 @@ export const ShowButton = styled.button`
   }
 `;
 
+export const StyledLoader = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 0.5em;
+  background: conic-gradient(#0077cc 10%, #3b9ce2);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
+
+  @keyframes s3 {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+`;
+
 export const SubmitButton = styled.button`
   background-color: #0077cc;
   color: #fff;
@@ -91,4 +119,11 @@ export const SubmitButton = styled.button`
   &:hover {
     background-color: #005fa3;
   }
+`;
+
+export const ErrorMessage = styled.div`
+  color: #cc0000;
+  font-size: 18px;
+  margin-top: 0.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 `;
